@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean name="room1" class="ua.epam.spring.hometask.domain.Auditorium">
+        <constructor-arg value="Room1"/>
+        <property name="numberOfSeats" value="120"/>
+    </bean>
+    <bean name="room2" class="ua.epam.spring.hometask.domain.Auditorium">
+        <constructor-arg value="Room2"/>
+        <property name="numberOfSeats" value="140"/>
+    </bean>
+
+
+
+    <!--bean id="eventLogger" class="ua.epam.spring.core.loggers.ConsoleEventLogger"/>
+
+    <bean id="app" class="ua.epam.spring.core.App"/-->
+
+</beans>
