@@ -1,5 +1,7 @@
 package ua.epam.spring.hometask.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
@@ -10,7 +12,15 @@ import java.util.stream.LongStream;
 /**
  * @author Yuriy_Tkach
  */
+@Component
 public class Auditorium {
+    @Override
+    public String toString() {
+        return  "{name='" + name + '\'' +
+                ", numberOfSeats=" + numberOfSeats +
+                ", vipSeats=" + vipSeats +
+                '}';
+    }
 
     private String name;
 
@@ -21,7 +31,7 @@ public class Auditorium {
     public Auditorium() {
     }
 
-    private Auditorium(String name) {
+    public Auditorium(String name) {
         this.name = name;
     }
 

@@ -1,21 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
  		http://www.springframework.org/schema/beans
- 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <bean name="room1" class="ua.epam.spring.hometask.domain.Auditorium">
-        <constructor-arg value="Room1"/>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:auditorium.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true" />
+        <!--property name="systemPropertiesMode">
+            <util:constant
+                    static-field="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        </property-->
+    </bean>
+
+
+
+
+
+    <bean id="room1" class="ua.epam.spring.hometask.domain.Auditorium">
+        <constructor-arg value="${name1}"/>
+        <property name="numberOfSeats" value="110"/>
+    </bean>
+    <bean id="room2" class="ua.epam.spring.hometask.domain.Auditorium">
+        <constructor-arg value="Room2"/>
         <property name="numberOfSeats" value="120"/>
     </bean>
-    <bean name="room2" class="ua.epam.spring.hometask.domain.Auditorium">
-        <constructor-arg value="Room2"/>
-        <property name="numberOfSeats" value="140"/>
+    <bean id="room3" class="ua.epam.spring.hometask.domain.Auditorium">
+        <constructor-arg value="Room3"/>
+        <property name="numberOfSeats" value="130"/>
+    </bean>
+    <bean id="auditorium" class="ua.epam.spring.hometask.domain.Auditorium">
+        <constructor-arg value="audi"/>
+        <property name="numberOfSeats" value="130"/>
+    </bean>
+
+    <bean id="auditoriumService" class="ua.epam.spring.hometask.serviceimpl.AuditoriumServiceImpl"  init-method="init">
+
+        <property name="auditoriums">
+            <set>
+                <ref bean="room1"/>
+                <ref bean="room2"/>
+                <ref bean="room3"/>
+            </set>
+        </property>
+
     </bean>
 
 
+    <bean id="user1" class="ua.epam.spring.hometask.domain.User">
+        <property name="firstName" value="Jake"/>
+        <property name="email" value="www@ru"/>
+    </bean>
 
+    <bean id="jticket" class="ua.epam.spring.hometask.domain.Ticket">
+        <constructor-arg>
+            <bean id="user1" class="ua.epam.spring.hometask.domain.User">
+                <property name="firstName" value="Jake"/>
+                <property name="email" value="www@ru"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="profile" class="ua.epam.spring.hometask.domain.Profile" autowire="byName">
+        <constructor-arg ref="adminnnn"/>
+        <!--property name="auditorium" ref="room1"/-->
+    </bean>
+
+    <bean id="adminnnn" class="ua.epam.spring.hometask.domain.Admin">
+        <property name="cool" value="YES"/>
+    </bean>
+    <bean id="admin2" class="ua.epam.spring.hometask.domain.Admin">
+        <property name="cool" value="NO"/>
+    </bean>
+
+
+    <context:annotation-config/>
     <!--bean id="eventLogger" class="ua.epam.spring.core.loggers.ConsoleEventLogger"/>
 
     <bean id="app" class="ua.epam.spring.core.App"/-->

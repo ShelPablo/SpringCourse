@@ -1,0 +1,13 @@
+display: "Как Вы хотите войти?"
+options:
+  - "Пользователь"
+  - "Администратор"
+
+case_user:
+  display:
+    options:
+      - "События"
+      - "Купленные билеты"
+
+case_admin:
+  display:
