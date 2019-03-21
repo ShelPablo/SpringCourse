@@ -1,5 +1,8 @@
 package ua.epam.spring.hometask.domain;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeSet;
@@ -7,12 +10,13 @@ import java.util.TreeSet;
 /**
  * @author Yuriy_Tkach
  */
+@Component
 public class User extends DomainObject {
-
+    @Value("nif-nif")
     private String firstName;
-
+    @Value("nuf-nuf")
     private String lastName;
-
+    @Value("naf-naf")
     private String email;
 
     private NavigableSet<Ticket> tickets = new TreeSet<>();

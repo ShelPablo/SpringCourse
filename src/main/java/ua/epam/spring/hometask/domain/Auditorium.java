@@ -12,7 +12,7 @@ import java.util.stream.LongStream;
 /**
  * @author Yuriy_Tkach
  */
-@Component
+//@Component
 public class Auditorium {
     @Override
     public String toString() {
